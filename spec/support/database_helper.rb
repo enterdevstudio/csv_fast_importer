@@ -1,4 +1,4 @@
-ActiveRecord::Base.configurations["test"] = YAML.load_file('spec/config/database.yml')
+ActiveRecord::Base.configurations["test"] = YAML.load_file("spec/config/database.#{DB_TYPE}.yml")
 ActiveRecord::Base.establish_connection :test
 
 ActiveRecord::Schema.define do

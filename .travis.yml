@@ -4,5 +4,6 @@ script:
   - bundle exec rspec spec
 rvm:
   2.2.0
-services:
-  postgresql
+env:
+  - DB_TYPE=mysql
+  - DB_TYPE=postgres

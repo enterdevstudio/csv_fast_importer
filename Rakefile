@@ -10,13 +10,30 @@ namespace :test do
 
     desc "Create test database"
     task :create do
-      require 'pg'
-      require 'yaml'
+      case ENV['DB_TYPE']
+        when "mysql"; createMysqlDatabase
+        else;         createPostgreSQLDatabase
+      end
+    end
 
-      db_config = YAML.load_file('spec/config/database.yml')
+    def createPostgreSQLDatabase
+      require 'yaml'
+      require "pg"
+      db_config = YAML.load_file('spec/config/database.postgres.yml')
       database_name = db_config['database']
       connection = PG.connect dbname: 'postgres', host: db_config['host'], port: db_config['port']
       connection.exec "CREATE DATABASE #{database_name}"
+      puts "Test database \"#{database_name}\" created."
+    end
+
+    def createMysqlDatabase
+      require 'yaml'
+      require "mysql2"
+      db_config = YAML.load_file('spec/config/database.mysql.yml')
+      database_name = db_config['database']
+      client = Mysql2::Client.new host: db_config['host'] #, username: db_config['username']
+      client.query "CREATE DATABASE #{database_name}"
+      client.close
       puts "Test database \"#{database_name}\" created."
     end
 

@@ -2,7 +2,7 @@ require 'csv_fast_importer'
 require_relative 'support/test_helper'
 require_relative 'support/csv_writer'
 
-describe CsvFastImporter do
+describe CsvFastImporter, postgres: true do
   include_context 'test_kaamelott table with columns row_index, id and label'
 
   describe 'with custom column separator' do
