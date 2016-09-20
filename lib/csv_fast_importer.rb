@@ -1,8 +1,10 @@
 require 'csv_fast_importer/version'
 require 'active_record'
 require 'configuration'
+require 'database_infos'
 
 class CsvFastImporter
+  include DatabaseInfos
 
   def self.import(file, parameters = {})
     configuration = Configuration.new file, parameters
@@ -34,6 +36,12 @@ class CsvFastImporter
       end
     end
     row_index
+  rescue Exception => e
+    if postgreSQL
+      raise e
+    else
+      raise "Current database type is not compatible with CsvFastImporter (PostgreSQL expected) : " + databaseInfos
+    end
   end
 
   def self.column_names(file, configuration)

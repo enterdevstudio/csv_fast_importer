@@ -119,6 +119,11 @@ Finally, you can run all tests with RSpec like this:
 $ bundle exec rspec spec
 ```
 
+One test exists with another database (to check error message): MySQL. You can run this test like this :
+```sh
+$ DB_TYPE=mysql rspec spec
+```
+
 ## Versioning
 
 `master` is the development branch and releases are published as tags.
