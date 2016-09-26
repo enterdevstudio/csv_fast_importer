@@ -119,8 +119,9 @@ Finally, you can run all tests with RSpec like this:
 $ bundle exec rspec spec
 ```
 
-One test exists with another database (to check error message): MySQL. You can run this test like this :
+One test exists with another database (to check error message): MySQL. You can setup database and run dedicated test like this :
 ```sh
+$ DB_TYPE=mysql rake test:db:create
 $ DB_TYPE=mysql rspec spec
 ```
 

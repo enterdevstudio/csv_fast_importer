@@ -1,4 +1,4 @@
-ALL_DB_TYPES = [:postgres, :mysql]
+require ROOT_DIR.join('config/database.rb')
 
 RSpec.configure do |config|
   config.expect_with(:rspec) { |c| c.syntax = :should }

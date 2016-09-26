@@ -4,10 +4,14 @@ Codacy::Reporter.start
 require 'active_record'
 require 'pathname'
 
-TEST_DIR = Pathname.new File.dirname(__FILE__)
-DB_TYPE = (ENV['DB_TYPE'] || :postgres).to_sym
+ROOT_DIR = Pathname.new(File.dirname(__FILE__)).join("../..")
 
-%w(database_helper spec_helper database_helper).each { |file| require TEST_DIR.join(file) }
-Dir[File.dirname(__FILE__) + "/../context/**/*.rb"].each {|f| require f }
+require ROOT_DIR.join('config/database.rb')
+
+%w(database_helper spec_helper database_helper).each do |file|
+  require ROOT_DIR.join('spec/support').join(file)
+end
+
+Dir[ROOT_DIR.join("spec/context/**/*.rb")].each { |f| require f }
 
 

@@ -3,6 +3,7 @@ shared_context 'test_kaamelott table with columns row_index, id and label' do
 
   before do
     sql_execute 'DROP TABLE IF EXISTS test_kaamelott'
+    # TODO Replace by database_helper.rb / Schema.define
     case DB_TYPE
       when :mysql
         sql_execute 'CREATE TABLE test_kaamelott ( row_index INT NULL, id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, label varchar(32) NOT NULL )'
