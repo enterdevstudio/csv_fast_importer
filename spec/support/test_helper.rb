@@ -1,7 +1,6 @@
 require 'codacy-coverage'
 Codacy::Reporter.start
 
-require 'active_record'
 require 'pathname'
 
 ROOT_DIR = Pathname.new(File.dirname(__FILE__)).join("../..")
