@@ -12,4 +12,3 @@ DATABASE_NAME = ActiveRecord::Base.configurations["test"]["database"]
 if ENV.has_key? "DB_USERNAME"
   ActiveRecord::Base.configurations["test"]["username"] = ENV["DB_USERNAME"]
 end
-ActiveRecord::Base.establish_connection :test
