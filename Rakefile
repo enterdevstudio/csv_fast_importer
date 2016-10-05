@@ -16,14 +16,16 @@ namespace :test do
         when :mysql
           require 'yaml'
           require 'pg'
-          ActiveRecord::Base.connection.execute "CREATE DATABASE #{DATABASE_NAME}"
+
         when :postgres
           require 'yaml'
           require 'mysql2'
-          ActiveRecord::Base.connection.execute "CREATE DATABASE #{DATABASE_NAME}"
+
         else
           raise "Unknown database type: #{DB_TYPE}"
       end
+
+      ActiveRecord::Base.connection.execute "CREATE DATABASE #{DATABASE_NAME}"
       puts "Test database \"#{DATABASE_NAME}\" created."
     end
 

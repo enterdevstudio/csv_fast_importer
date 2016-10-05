@@ -8,8 +8,8 @@ unless ALL_DB_TYPES.include?(DB_TYPE)
 end
 
 ActiveRecord::Base.configurations["test"] = YAML.load_file("config/database.#{DB_TYPE}.yml")
-DATABASE_NAME = ActiveRecord::Base.configurations["test"][:database]
+DATABASE_NAME = ActiveRecord::Base.configurations["test"]["database"]
 if ENV.has_key? "DB_USERNAME"
-  ActiveRecord::Base.configurations["test"][:username] = ENV["DB_USERNAME"]
+  ActiveRecord::Base.configurations["test"]["username"] = ENV["DB_USERNAME"]
 end
 ActiveRecord::Base.establish_connection :test
