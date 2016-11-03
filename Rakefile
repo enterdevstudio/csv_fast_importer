@@ -25,6 +25,14 @@ namespace :test do
           raise "Unknown database type: #{DB_TYPE}"
       end
 
+#client = Mysql2::Client.new(:host => 'localhost', :username=>"#{YOUR_MYSQL_USERNAME}", :password=> "#{YOUR_MYSQL_PASSWORD}")
+#client.query("CREATE DATABASE company_db")
+#client.query('USE company_db')
+#client.query('CREATE TABLE employees ...')
+
+#conn_template1 = PG.connect( dbname: 'template1' )
+#res1 = conn.exec('SELECT * from pg_database where datname = $1', ['words'])
+
       ActiveRecord::Base.connection.execute "CREATE DATABASE #{DATABASE_NAME}"
       puts "Test database \"#{DATABASE_NAME}\" created."
     end
