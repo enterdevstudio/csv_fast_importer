@@ -107,11 +107,12 @@ First of all, you need to initialize your environment :
 $ bundle install
 ```
 
-Then, start your PostgreSQL database and setup database environment:
+Then, start your PostgreSQL database (ex: [Postgres.app](http://postgresapp.com) for the Mac) and setup database environment:
 
 ```sh
 $ bundle exec rake test:db:create
 ```
+This will connect to `localhost` PostgreSQL database without user (see `config/database.postgres.yml`) and create a new database dedicated to tests.
 
 Finally, you can run all tests with RSpec like this:
 
@@ -119,11 +120,13 @@ Finally, you can run all tests with RSpec like this:
 $ bundle exec rspec spec
 ```
 
-One test exists with another database (to check error message): MySQL. You can setup database and run dedicated test like this :
+By default, PostgreSQL is used. You can set another database with environment variables like this for MySQL:
 ```sh
-$ DB_TYPE=mysql DB_USERNAME=username rake test:db:create
-$ DB_TYPE=mysql DB_USERNAME=username rspec spec
+$ DB_TYPE=mysql DB_USERNAME=username bundle exec rake test:db:create
+$ DB_TYPE=mysql DB_USERNAME=username bundle exec rspec spec
 ```
+This will connect to mysql with `root` user and create database for user `username`.
+Use `DB_TYPE=mysql DB_USERNAME=` (with empty username) for anonymous account.
 
 ## Versioning
 
