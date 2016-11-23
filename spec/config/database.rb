@@ -10,6 +10,7 @@ end
 
 config_file = Pathname.new(File.dirname(__FILE__)).join("database.#{DB_TYPE}.yml")
 DATABASE_CONFIG = YAML.load_file(config_file)
+
 if ENV.has_key? "DB_USERNAME"
   DATABASE_CONFIG["username"] = ENV["DB_USERNAME"]
 end

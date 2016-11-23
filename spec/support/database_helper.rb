@@ -1,3 +1,6 @@
+require ROOT_DIR.join('spec/config/database.rb')
+establish_connection
+
 ActiveRecord::Schema.define do
 
 =begin
